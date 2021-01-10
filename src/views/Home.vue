@@ -124,22 +124,24 @@
                     </v-col>
                     <v-col order="2" cols="4" sm="3" md="3">
                       <v-switch
-                        v-model="switch1"
+                        v-model="country"
+                        inset
                         color="#30bbb5"
                         label="Show Country"
                         style="padding-right:20px;font-size:12px;margin-top:-2px"
                         class="mx-3"
+                        value="Nigeria"
                       ></v-switch>
                     </v-col>
                   </v-row>
 
-                  <div v-for="(person, i) in people" :key="i">
+                  <div v-for="(person, i) in filteredPeople" :key="i">
                     <v-card
-                      class="pa-5 elevation-24"
+                      class="pa-5 elevation-24 fadein-down"
                       style="border-radius:10px;margin-bottom:30px"
                     >
                       <v-row>
-                        <v-col cols="6" md="2" sm="5">
+                        <v-col cols="6" md="1" sm="6">
                           <v-avatar size="100px">
                             <v-img
                               :src="person.picture.large"
@@ -147,7 +149,8 @@
                             />
                           </v-avatar>
                         </v-col>
-                        <v-col cols="10" md="10" sm="7">
+                        <v-col cols="12" md="11" sm="6">
+                        <div style="padding-left:30px">
                           <p
                             style="margin:7px;font-size:20px;padding-left:30px"
                             class="font-weight-bold"
@@ -160,7 +163,7 @@
                           >
                             {{ person.location.street.number }},
                             {{ person.location.city }},
-                            {{ person.location.state }}
+                            {{ person.location.state }}, {{country}}
                           </p>
                           <div style="padding-left:22px;margin-top:-30px">
                             <v-row>
@@ -169,7 +172,7 @@
                                   color="#f7d9f2"
                                   depressed
                                   text
-                                  style="margin-top:23px;border-radius:40px"
+                                  style="margin-top:23px;border-radius:40px;"
                                   ><v-icon color="#BABDD1"
                                     >mdi-email-outline</v-icon
                                   ><span
@@ -179,13 +182,12 @@
                                   </span></v-btn
                                 >
                               </v-col>
-
                               <v-col cols="12" md="4" sm="5">
                                 <v-btn
                                   color="#f7d9f2"
                                   depressed
                                   text
-                                  style="margin-top:23px;border-radius:40px"
+                                  style="margin-top:23px;border-radius:40px;margin-right:200px"
                                   ><v-icon color="#BABDD1"
                                     >mdi-phone-in-talk-outline</v-icon
                                   ><span
@@ -212,6 +214,7 @@
                               </v-col>
                             </v-row>
                           </div>
+                          </div>
                         </v-col>
                       </v-row>
                     </v-card>
@@ -226,6 +229,7 @@
                         height="50px"
                         color="#7946c1"
                         class="white--text"
+                        href="https://randomuser.me/api/?format=csv"
                       >
                         <v-icon class="px-2">mdi-cloud-download-outline</v-icon
                         >Download Results</v-btn
@@ -262,7 +266,7 @@
                 </v-row>
               </v-window-item>
 
-              <v-window-item :value="2">
+              <v-window-item class="fadein-down" :value="2">
                 <div style="padding-top:50px;margin:50px;text-align:left">
                   <h3
                     class="font-weight-bold"
@@ -335,7 +339,7 @@
                         >
                           {{ person.location.street.number }},
                           {{ person.location.city }},
-                          {{ person.location.state }}
+                          {{ person.location.state }},
                         </p>
 
                         <div style="padding-left:80px">
@@ -484,7 +488,7 @@
                       </v-col>
                     </v-row>
 
-                    <div v-for="(person, i) in people" :key="i">
+                    <div v-for="(person, i) in filteredPeople" :key="i">
                       <v-card
                         class="pa-5 elevation-24"
                         style="border-radius:10px;margin-bottom:30px;text-align:center"
@@ -593,6 +597,7 @@
                           height="40px"
                           width="25px"
                           style="border-radius:10px"
+                          @click="previousPage"
                           ><v-icon color="#262a41"
                             >mdi-chevron-left</v-icon
                           ></v-btn
@@ -603,6 +608,7 @@
                           small
                           height="40px"
                           width="25px"
+                          @click="nextPage"
                           ><v-icon class="white--text"
                             >mdi-chevron-right</v-icon
                           ></v-btn
@@ -747,6 +753,7 @@
                           color="#7946c1"
                           class="white--text"
                           style="opacity:0.3"
+                          href="https://randomuser.me/api/?format=csv"
                         >
                           <v-icon class="px-2"
                             >mdi-cloud-download-outline</v-icon
@@ -763,6 +770,7 @@
                           height="40px"
                           width="25px"
                           style="border-radius:10px;opacity:0.3"
+                          @click="previousPage"
                           ><v-icon color="#262a41"
                             >mdi-chevron-left</v-icon
                           ></v-btn
@@ -773,6 +781,7 @@
                           small
                           height="40px"
                           width="25px"
+                          @click="nextPage"
                           ><v-icon class="white--text"
                             >mdi-chevron-right</v-icon
                           ></v-btn
@@ -797,11 +806,11 @@ export default {
   name: "Home",
 
   data: () => ({
-    switch1: true,
+    country: 'Nigeria',
     search: "",
     step: 1,
-	pageNumber: 1,
-    api: `https://randomuser.me/api/?page=1&results=3&seed=abc`,
+	pageNumber: "",
+    api: "",
     people: [],
     onePerson: [],
     alignments: ["start", "center", "end"],
@@ -1059,6 +1068,8 @@ export default {
   }),
 
   created() {
+    this.pageNumber=1
+    this.api=`https://randomuser.me/api/?page=${this.pageNumber}&results=3&seed=abc`
     axios.get(this.api).then((response) => {
       this.people = response.data.results;
       console.log(this.people.slice(0, 1));
@@ -1111,6 +1122,14 @@ export default {
 
 
   },
+  computed:{
+    filteredPeople:function(){
+      return this.people.filter((person) =>{
+        return person.name.first.match(this.search)
+        
+        })
+    }
+  }
 };
 </script>
 
@@ -1128,5 +1147,33 @@ body {
 
 .v-btn {
   text-transform: none !important;
+}
+
+.fade-in {
+  animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadein-down {
+  animation: fadeInDown 3s;
+}
+
+@keyframes fadeInDown {
+  from {
+    top: -2px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
+  }
 }
 </style>
