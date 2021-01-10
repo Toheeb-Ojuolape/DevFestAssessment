@@ -241,6 +241,7 @@
                         height="40px"
                         width="25px"
                         style="border-radius:10px"
+						@click="previousPage"
                         ><v-icon color="#262a41"
                           >mdi-chevron-left</v-icon
                         ></v-btn
@@ -249,6 +250,7 @@
                         color="#262a41"
                         style="border-radius:10px"
                         small
+						@click="nextPage"
                         height="40px"
                         width="25px"
                         ><v-icon class="white--text"
@@ -410,6 +412,7 @@
                         height="40px"
                         width="25px"
                         style="border-radius:10px;opacity:0.3"
+						@click="previousPage"
                         ><v-icon color="#262a41"
                           >mdi-chevron-left</v-icon
                         ></v-btn
@@ -420,6 +423,7 @@
                         small
                         height="40px"
                         width="25px"
+						@click="nextPage"
                         ><v-icon class="white--text"
                           >mdi-chevron-right</v-icon
                         ></v-btn
@@ -796,8 +800,8 @@ export default {
     switch1: true,
     search: "",
     step: 1,
-    post: 3,
-    api: `https://randomuser.me/api/?results=3`,
+	pageNumber: 1,
+    api: `https://randomuser.me/api/?page=1&results=3&seed=abc`,
     people: [],
     onePerson: [],
     alignments: ["start", "center", "end"],
@@ -1087,7 +1091,25 @@ export default {
 
     goBack() {
       this.step = 1;
-    },
+	},
+	
+	nextPage(){
+		this.pageNumber= this.pageNumber+1
+		this.api = `https://randomuser.me/api/?page=${this.pageNumber}&results=3&seed=abc`
+		axios.get(this.api).then((response) => {
+        this.people = response.data.results;
+      });
+	},
+
+	previousPage(){
+		this.pageNumber= this.pageNumber-1
+		this.api = `https://randomuser.me/api/?page=${this.pageNumber}&results=3&seed=abc`
+		axios.get(this.api).then((response) => {
+        this.people = response.data.results;
+      });
+	}
+
+
   },
 };
 </script>
