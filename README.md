@@ -1,4 +1,4 @@
-https://github.com/Toheeb-Ojuolape/DevFestAssessment/workflows/CI/badge.svg
+https://github.com/toheeb-ojuolape/devfestassessment/workflows/CI/badge.svg
 
 # devfest
 
