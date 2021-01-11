@@ -92,7 +92,7 @@
           >
             <!-- Creating a window view to move from All Users to User List -->
             <v-window v-model="step">
-              <v-window-item :value="1">
+              <v-window-item class="fadein" :value="1">
                 <div style="padding-top:50px;margin:30px">
                   <h3
                     class="font-weight-bold"
@@ -120,6 +120,7 @@
                         dense
                         filled
                         rounded
+                        value="Nigeria"
                       ></v-select>
                     </v-col>
                     <v-col order="2" cols="4" sm="3" md="3">
@@ -150,70 +151,70 @@
                           </v-avatar>
                         </v-col>
                         <v-col cols="12" md="11" sm="6">
-                        <div style="padding-left:30px">
-                          <p
-                            style="margin:7px;font-size:20px;padding-left:30px"
-                            class="font-weight-bold"
-                          >
-                            {{ person.name.first }} {{ person.name.last }}
-                          </p>
-                          <p
-                            style="padding-left:40px;font-size:15px"
-                            class="font-weight-bold font-italic"
-                          >
-                            {{ person.location.street.number }},
-                            {{ person.location.city }},
-                            {{ person.location.state }}, {{country}}
-                          </p>
-                          <div style="padding-left:22px;margin-top:-30px">
-                            <v-row>
-                              <v-col cols="12" md="6" sm="5">
-                                <v-btn
-                                  color="#f7d9f2"
-                                  depressed
-                                  text
-                                  style="margin-top:23px;border-radius:40px;"
-                                  ><v-icon color="#BABDD1"
-                                    >mdi-email-outline</v-icon
-                                  ><span
-                                    style="opacity:0.6;color:#262A41;text-align:center;font-size:12px"
+                          <div style="padding-left:30px">
+                            <p
+                              style="margin:7px;font-size:20px;padding-left:30px"
+                              class="font-weight-bold"
+                            >
+                              {{ person.name.first }} {{ person.name.last }}
+                            </p>
+                            <p
+                              style="padding-left:40px;font-size:15px"
+                              class="font-weight-bold font-italic"
+                            >
+                              {{ person.location.street.number }},
+                              {{ person.location.city }},
+                              {{ person.location.state }}, {{ country }}
+                            </p>
+                            <div style="padding-left:22px;margin-top:-30px">
+                              <v-row>
+                                <v-col cols="12" md="6" sm="5">
+                                  <v-btn
+                                    color="#f7d9f2"
+                                    depressed
+                                    text
+                                    style="margin-top:23px;border-radius:40px;"
+                                    ><v-icon color="#BABDD1"
+                                      >mdi-email-outline</v-icon
+                                    ><span
+                                      style="opacity:0.6;color:#262A41;text-align:center;font-size:12px"
+                                    >
+                                      {{ person.email }}
+                                    </span></v-btn
                                   >
-                                    {{ person.email }}
-                                  </span></v-btn
-                                >
-                              </v-col>
-                              <v-col cols="12" md="4" sm="5">
-                                <v-btn
-                                  color="#f7d9f2"
-                                  depressed
-                                  text
-                                  style="margin-top:23px;border-radius:40px;margin-right:200px"
-                                  ><v-icon color="#BABDD1"
-                                    >mdi-phone-in-talk-outline</v-icon
-                                  ><span
-                                    style="opacity:0.6;color:#262A41;text-align:center;font-size:12px"
+                                </v-col>
+                                <v-col cols="12" md="4" sm="5">
+                                  <v-btn
+                                    color="#f7d9f2"
+                                    depressed
+                                    text
+                                    style="margin-top:23px;border-radius:40px;margin-right:200px"
+                                    ><v-icon color="#BABDD1"
+                                      >mdi-phone-in-talk-outline</v-icon
+                                    ><span
+                                      style="opacity:0.6;color:#262A41;text-align:center;font-size:12px"
+                                    >
+                                      {{ person.phone }}
+                                    </span></v-btn
                                   >
-                                    {{ person.phone }}
-                                  </span></v-btn
-                                >
-                              </v-col>
+                                </v-col>
 
-                              <v-col cols="12" md="2" sm="2">
-                                <v-btn
-                                  width="50px"
-                                  height="50px"
-                                  @click="goNext(i)"
-                                  style="border-radius:14px;margin-top:8px"
-                                  class="elevation-24 pa-3"
-                                  color="#75d6d1"
-                                >
-                                  <v-icon class="white--text" medium>
-                                    mdi-arrow-right
-                                  </v-icon></v-btn
-                                >
-                              </v-col>
-                            </v-row>
-                          </div>
+                                <v-col cols="12" md="2" sm="2">
+                                  <v-btn
+                                    width="50px"
+                                    height="50px"
+                                    @click="goNext(i)"
+                                    style="border-radius:14px;margin-top:8px"
+                                    class="elevation-24 pa-3"
+                                    color="#75d6d1"
+                                  >
+                                    <v-icon class="white--text" medium>
+                                      mdi-arrow-right
+                                    </v-icon></v-btn
+                                  >
+                                </v-col>
+                              </v-row>
+                            </div>
                           </div>
                         </v-col>
                       </v-row>
@@ -245,7 +246,7 @@
                         height="40px"
                         width="25px"
                         style="border-radius:10px"
-						@click="previousPage"
+                        @click="previousPage"
                         ><v-icon color="#262a41"
                           >mdi-chevron-left</v-icon
                         ></v-btn
@@ -254,7 +255,7 @@
                         color="#262a41"
                         style="border-radius:10px"
                         small
-						@click="nextPage"
+                        @click="nextPage"
                         height="40px"
                         width="25px"
                         ><v-icon class="white--text"
@@ -298,11 +299,13 @@
                     </v-col>
                     <v-col order="2" cols="4" sm="3" md="3">
                       <v-switch
-                        v-model="switch1"
+                        inset
+                        v-model="country"
                         color="#30bbb5"
                         label="Show Country"
                         style="padding-right:20px;font-size:12px;margin-top:-2px"
                         class="mx-3"
+                        value="Nigeria"
                       ></v-switch>
                     </v-col>
                   </v-row>
@@ -416,7 +419,7 @@
                         height="40px"
                         width="25px"
                         style="border-radius:10px;opacity:0.3"
-						@click="previousPage"
+                        @click="previousPage"
                         ><v-icon color="#262a41"
                           >mdi-chevron-left</v-icon
                         ></v-btn
@@ -427,7 +430,7 @@
                         small
                         height="40px"
                         width="25px"
-						@click="nextPage"
+                        @click="nextPage"
                         ><v-icon class="white--text"
                           >mdi-chevron-right</v-icon
                         ></v-btn
@@ -445,6 +448,7 @@
               justify-center
               style="margin-top:120px;border-radius:17px;padding-bottom:60px"
               color="#f7f7ff"
+              class="fadein-down"
             >
               <v-window v-model="step">
                 <v-window-item :value="1">
@@ -479,23 +483,25 @@
                       </v-col>
                       <v-col order="2" cols="4" sm="3" md="3">
                         <v-switch
-                          v-model="switch1"
+                          inset
+                          v-model="country"
                           color="#30bbb5"
                           label="Show Country"
                           style="padding-right:20px;font-size:12px;margin-top:-2px"
                           class="mx-3"
+                          value="Nigeria"
                         ></v-switch>
                       </v-col>
                     </v-row>
 
                     <div v-for="(person, i) in filteredPeople" :key="i">
                       <v-card
-                        class="pa-5 elevation-24"
+                        class="pa-5 elevation-24 fadein-down"
                         style="border-radius:10px;margin-bottom:30px;text-align:center"
                       >
                         <v-row>
                           <v-col cols="6" md="2" sm="6">
-                            <v-avatar size="100px" style="margin-left:92px">
+                            <v-avatar size="100px" style="margin-left:75px">
                               <v-img
                                 :src="person.picture.large"
                                 style="border-radius:60px;border:solid;border-color:#75d6d1;border-width:6px"
@@ -515,7 +521,7 @@
                             >
                               {{ person.location.street.number }},
                               {{ person.location.city }},
-                              {{ person.location.state }}
+                              {{ person.location.state }}, {{ country }}
                             </p>
                             <div style="padding-left:22px;margin-top:-30px">
                               <v-row>
@@ -581,6 +587,7 @@
                           height="50px"
                           color="#7946c1"
                           class="white--text"
+                          href="https://randomuser.me/api/?format=csv"
                         >
                           <v-icon class="px-2"
                             >mdi-cloud-download-outline</v-icon
@@ -618,8 +625,8 @@
                   </v-row>
                 </v-window-item>
 
-                <v-window-item :value="2">
-                  <div style="padding-top:50px;margin:50px;text-align:left">
+                <v-window-item class="fadein" :value="2">
+                  <div style="padding-top:50px;margin:50px;text-align:center">
                     <h3
                       class="font-weight-bold"
                       style="color:#30344a;font-size:22px"
@@ -650,11 +657,13 @@
                       </v-col>
                       <v-col order="2" cols="4" sm="3" md="3">
                         <v-switch
-                          v-model="switch1"
+                          inset
+                          v-model="country"
                           color="#30bbb5"
                           label="Show Country"
                           style="padding-right:20px;font-size:12px;margin-top:-2px"
                           class="mx-3"
+                          value="Nigeria"
                         ></v-switch>
                       </v-col>
                     </v-row>
@@ -667,7 +676,7 @@
 
                     <div v-for="(person, i) in onePerson" :key="i">
                       <v-row no-gutters>
-                        <v-col cols="6" md="3" sm="6">
+                        <v-col cols="6" md="6" sm="6">
                           <v-avatar size="200px" class="my-3">
                             <v-img
                               :src="person.picture.large"
@@ -675,9 +684,9 @@
                             />
                           </v-avatar>
                         </v-col>
-                        <v-col cols="9" md="9" sm="6">
+                        <v-col cols="9" md="6" sm="7">
                           <p
-                            style="margin-top:20px;font-size:23px;padding-left:80px;color:#30344a"
+                            style="margin-top:20px;font-size:23px;padding-left:0px;color:#30344a"
                             class="font-weight-black"
                           >
                             {{ person.name.title }} {{ person.name.first }}
@@ -687,14 +696,14 @@
                             }}</span>
                           </p>
                           <p
-                            style="padding-left:80px;font-size:15px;margin-top:-7px"
+                            style="font-size:15px;margin-top:-7px"
                           >
                             {{ person.location.street.number }},
                             {{ person.location.city }},
                             {{ person.location.state }}
                           </p>
 
-                          <div style="padding-left:80px">
+                          <div>
                             <v-btn rounded color="#e2e3ec" disabled
                               ><v-icon>mdi-email-outline</v-icon
                               ><span style="color:#262A41;padding-left:3px"
@@ -753,7 +762,6 @@
                           color="#7946c1"
                           class="white--text"
                           style="opacity:0.3"
-                          href="https://randomuser.me/api/?format=csv"
                         >
                           <v-icon class="px-2"
                             >mdi-cloud-download-outline</v-icon
@@ -806,10 +814,10 @@ export default {
   name: "Home",
 
   data: () => ({
-    country: 'Nigeria',
+    country: "Nigeria",
     search: "",
     step: 1,
-	pageNumber: "",
+    pageNumber: "",
     api: "",
     people: [],
     onePerson: [],
@@ -1068,8 +1076,8 @@ export default {
   }),
 
   created() {
-    this.pageNumber=1
-    this.api=`https://randomuser.me/api/?page=${this.pageNumber}&results=3&seed=abc`
+    this.pageNumber = 1;
+    this.api = `https://randomuser.me/api/?page=${this.pageNumber}&results=3&seed=abc`;
     axios.get(this.api).then((response) => {
       this.people = response.data.results;
       console.log(this.people.slice(0, 1));
@@ -1102,34 +1110,31 @@ export default {
 
     goBack() {
       this.step = 1;
-	},
-	
-	nextPage(){
-		this.pageNumber= this.pageNumber+1
-		this.api = `https://randomuser.me/api/?page=${this.pageNumber}&results=3&seed=abc`
-		axios.get(this.api).then((response) => {
+    },
+
+    nextPage() {
+      this.pageNumber = this.pageNumber + 1;
+      this.api = `https://randomuser.me/api/?page=${this.pageNumber}&results=3&seed=abc`;
+      axios.get(this.api).then((response) => {
         this.people = response.data.results;
       });
-	},
+    },
 
-	previousPage(){
-		this.pageNumber= this.pageNumber-1
-		this.api = `https://randomuser.me/api/?page=${this.pageNumber}&results=3&seed=abc`
-		axios.get(this.api).then((response) => {
+    previousPage() {
+      this.pageNumber = this.pageNumber - 1;
+      this.api = `https://randomuser.me/api/?page=${this.pageNumber}&results=3&seed=abc`;
+      axios.get(this.api).then((response) => {
         this.people = response.data.results;
       });
-	}
-
-
+    },
   },
-  computed:{
-    filteredPeople:function(){
-      return this.people.filter((person) =>{
-        return person.name.first.match(this.search)
-        
-        })
-    }
-  }
+  computed: {
+    filteredPeople: function() {
+      return this.people.filter((person) => {
+        return person.name.first.match(this.search);
+      });
+    },
+  },
 };
 </script>
 
@@ -1149,7 +1154,7 @@ body {
   text-transform: none !important;
 }
 
-.fade-in {
+.fadein {
   animation: fadeIn 3s;
 }
 
@@ -1172,7 +1177,7 @@ body {
     opacity: 0;
   }
   to {
-    top: 0px;
+    top: 1px;
     opacity: 1;
   }
 }
