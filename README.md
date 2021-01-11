@@ -38,4 +38,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   This was fun. I hope I get the internship
 
 
-https://github.com/Toheeb-Ojuolape/DevFestAssessment/workflows/.github/workflows/automatic.yml/badge.svg
+https://github.com/Toheeb-Ojuolape/DevFestAssessment/workflows/automatic/badge.svg
