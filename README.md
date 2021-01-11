@@ -1,3 +1,5 @@
+https://github.com/Toheeb-Ojuolape/DevFestAssessment/workflows/CI/badge.svg
+
 # devfest
 
 ## Project setup
@@ -37,5 +39,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Any other information: 
   This was fun. I hope I get the internship
 
-
-https://github.com/Toheeb-Ojuolape/DevFestAssessment/workflows/CI/badge.svg
