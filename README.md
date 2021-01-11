@@ -22,3 +22,19 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+### link to deployed static site: 
+ https://toheeb-ojuolape.github.io/
+
+### Run tests: 
+  npm run test
+
+### Technologies used: 
+  vue, vuetify, axios
+
+### Any other information: 
+  This was fun. I hope I get the internship
+
+
