@@ -1,6 +1,4 @@
-### Badge - click to see it
-
-https://github.com/Toheeb-Ojuolape/DevFestAssessment/workflows/CI/badge.svg
+![CI Badge](https://github.com/Toheeb-Ojuolape/DevFestAssessment/workflows/CI/badge.svg "CI Status")
 
 # devfest
 
